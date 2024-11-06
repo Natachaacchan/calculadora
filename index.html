@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Básica</title>
+    <style>
+        /* Estilos básicos para centralizar a calculadora e estilizar os botões */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .calculadora {
+            width: 220px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 2px solid #cccccc;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        #display {
+            width: 100%;
+            height: 40px;
+            font-size: 1.2em;
+            text-align: right;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f7f7f7;
+        }
+        .button {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2em;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .button-operator {
+            background-color: #f4a261;
+            color: white;
+        }
+        .button-equal {
+            background-color: #2a9d8f;
+            color: white;
+            width: calc(100% - 10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <input type="text" id="display" readonly />
+
+        <!-- Linha 1 de botões -->
+        <button class="button" onclick="addToDisplay('7')">7</button>
+        <button class="button" onclick="addToDisplay('8')">8</button>
+        <button class="button" onclick="addToDisplay('9')">9</button>
+        <button class="button button-operator" onclick="addToDisplay('+')">+</button>
+
+        <!-- Linha 2 de botões -->
+        <button class="button" onclick="addToDisplay('4')">4</button>
+        <button class="button" onclick="addToDisplay('5')">5</button>
+        <button class="button" onclick="addToDisplay('6')">6</button>
+        <button class="button button-operator" onclick="addToDisplay('-')">-</button>
+
+        <!-- Linha 3 de botões -->
+        <button class="button" onclick="addToDisplay('1')">1</button>
+        <button class="button" onclick="addToDisplay('2')">2</button>
+        <button class="button" onclick="addToDisplay('3')">3</button>
+        <button class="button button-operator" onclick="addToDisplay('*')">*</button>
+
+        <!-- Linha 4 de botões -->
+        <button class="button" onclick="addToDisplay('0')">0</button>
+        <button class="button" onclick="clearDisplay()">C</button>
+        <button class="button button-operator" onclick="addToDisplay('/')">/</button>
+
+        <!-- Botão de igual -->
+        <button class="button button-equal" onclick="calculate()">=</button>
+        <button class="button button-equal" onclick="sortNumbers()">Ordenar</button>
+    </div>
+
+    <script>
+        // Função para adicionar valores ao display
+        function addToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        // Função para limpar o display
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        // Função para realizar o cálculo
+        function calculate() {
+            try {
+                let result = eval(document.getElementById('display').value);
+                document.getElementById('display').value = result;
+            } catch (error) {
+                document.getElementById('display').value = "Erro";
+            }
+        }
+        function sortNumbers() {
+    try {
+        let expression = document.getElementById('display').value;
+        let numbers = expression.match(/\d+/g); // Extrai todos os números da expressão
+
+        if (numbers) {
+            // Converte os números para inteiros e os organiza em ordem decrescente
+            numbers = numbers.map(Number).sort((a, b) => b - a);
+            document.getElementById('display').value = numbers.join(', ');
+        } else {
+            document.getElementById('display').value = "Nenhum número";
+        }
+    } catch (error) {
+        document.getElementById('display').value = "Erro";
+    }
+}
+    </script>
+</body>
+</html>
