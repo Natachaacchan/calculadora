@@ -1,0 +1,33 @@
+/* style.css */
+
+.calculator {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.display {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 1fr; /* 3 colunas para números e 1 para operadores */
+    gap: 5px;
+}
+
+.button {
+    padding: 20px;
+    font-size: 18px;
+}
+
+.button-operator {
+    background-color: #f2a33c;
+    color: white;
+}
+
+.button-equal {
+    grid-column: span 2; /* Para que o botão "=" ocupe duas colunas */
+    background-color: #4CAF50;
+    color: white;
+}
